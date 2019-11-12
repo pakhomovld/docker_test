@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  nginx:
+    depends_on: 
+      - php_fpm
+    build: ./containers/nginx
+    expose:
+      - "80"
+      - "8000"
+    ports:
+      - "8000:80"
+    volumes:
+      - ./www:/var/www/:rw
+    environment:
+      - NGINX_HOST=localhost
+    links:
+      - php_fpm
+  php_fpm:
+    build: ./containers/php-fpm
+    expose:
+      - "9000"
+    volumes:
+      - ./www:/var/www:rw
+    depends_on: 
+      - mysql
+    links:
+      - mysql
+      - mysql:sql
+    environment:
+      - XDEBUG_CONFIG='remote_enable=true'
+      - XDEBUG_CONFIG='remote_host=0.0.0.0'
+      - XDEBUG_CONFIG="IDE_KEY=PHPSTORM"
+  mysql:
+    image: mysql:8.0
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=qwerty
