@@ -1,7 +1,5 @@
 FROM php:7.3-fpm
 
-COPY conf/ /usr/local/etc/php-fpm.d/
-
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
     curl \
