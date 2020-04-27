@@ -8,6 +8,6 @@
 Настройка xDebug:
   1. Preferences | Languages & Frameworks | PHP | Debug
   2. Xdebug port - 9000 - Apply
-  3. Validate - Path to create validation script: /path_to_project/ailove_test/www/html/
+  3. Validate - Path to create validation script: /path_to_project/www/html/
   4. Url to validation script: http://localhost:8000
   5. Validate
